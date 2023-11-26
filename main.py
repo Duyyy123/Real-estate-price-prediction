@@ -1,24 +1,28 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
- 
+
+# load DataFrame
 df = pd.read_csv("real_estate.csv")
+columns_multiindex = pd.MultiIndex.from_tuples([(col, i) for i, col in enumerate(df.columns)])
+df.columns = columns_multiindex
 
-data = df.drop('Y', axis = 1)
-label = df['Y']
+# feature extraction and labeling
+data = df.drop([0, 7], axis = 1, level = 1)
+label = df["Y house price of unit area"]
 
-train_data, test_data, train_label, test_label = train_test_split(data, label, test_size = 0.1, random_state = 50); 
+# data splitting
+train_data, train_label, test_data, test_label = train_test_split(data, label, test_size = 0.1, random_state = 50)
 
+# data normalization
 test_data = test_data.to_numpy()
 train_data = train_data.to_numpy()
 
 test_label = test_label.to_numpy()
 train_label = train_label.to_numpy()
 
-print("Chieu du lieu train", train_data.shape)
-print("Chieu nhan train", train_label.shape)
-
-print()
-
-print("Chieu du lieu test", test_data.shape)
-print("Chieu nhan test", test_label.shape)
+# show data
+print("train data shape: ", train_data.shape)
+print("train label shape: ", train_label.shape)
+print("test data shape: ", test_data.shape)
+print("test label shape: ", test_label.shape)
