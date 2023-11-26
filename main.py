@@ -4,11 +4,9 @@ from sklearn.model_selection import train_test_split
 
 # load DataFrame
 df = pd.read_csv("real_estate.csv")
-columns_multiindex = pd.MultiIndex.from_tuples([(col, i) for i, col in enumerate(df.columns)])
-df.columns = columns_multiindex
 
 # feature extraction and labeling
-data = df.drop([0, 7], axis = 1, level = 1)
+data = df.drop(["No", "Y house price of unit area"], axis = 1)
 label = df["Y house price of unit area"]
 
 # data splitting
