@@ -26,8 +26,3 @@ print("train data shape: ", train_data.shape)
 print("train label shape: ", train_label.shape)
 print("test data shape: ", test_data.shape)
 print("test label shape: ", test_label.shape)
-
-
- <class 'pandas.core.series.Series'>
-
-<class 'pandas.core.frame.DataFrame'>
