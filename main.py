@@ -13,6 +13,8 @@ label = df[["Y house price of unit area"]]
 train_data, test_data, train_label, test_label = train_test_split(data, label, test_size = 0.1, random_state = 50)
 
 # data normalization
+np.set_printoptions(suppress = True)
+
 test_data = test_data.to_numpy()
 train_data = train_data.to_numpy()
 
