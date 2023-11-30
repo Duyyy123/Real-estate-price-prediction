@@ -4,19 +4,12 @@ from sklearn.model_selection import train_test_split
 
 np.set_printoptions(suppress = True)
 # load DataFrame
-df = pd.read_csv("real_estate.csv")
-df["X4 number of convenience stores"] = df["X4 number of convenience stores"].astype(float)
-cmax = np.array([0 for i in range(8)], dtype = float)
-cmin = np.array([0 for i in range(8)], dtype = float)
-i = 0
-for col in df:
-    cmax[i] = df[col].max()
-    cmin[i] = df[col].min()
-    i = i + 1
+df = pd.read_csv("real_estate.csv", dtype = float)
 
-for j in range(1,8,1):
-    for i in range(414):
-        df.iloc[i, j] = (df.iloc[i, j] - cmin[j]) / (cmax[j] - cmin[j])
+# data normalization
+cmin = df.max()
+cmax = df.min()
+df.iloc[:,:] = (df.iloc[:,:] - cmin[:]) / (cmax[:] - cmin[:])
 
 # feature extraction and labeling
 data = df.drop(["No", "Y house price of unit area"], axis = 1)
@@ -26,8 +19,7 @@ label = df[["Y house price of unit area"]]
 # data splitting
 train_data, test_data, train_label, test_label = train_test_split(data, label, test_size = 0.1, random_state = 50)
 
-# data normalization
-
+# data pre-processing
 test_data = test_data.to_numpy()
 train_data = train_data.to_numpy()
 
