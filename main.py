@@ -8,9 +8,7 @@ np.set_printoptions(suppress = True)
 df = pd.read_csv("real_estate.csv", dtype = float)
 
 # data normalization
-cmin = df.max()
-cmax = df.min()
-df.iloc[:,:] = (df.iloc[:,:] - cmin[:]) / (cmax[:] - cmin[:])
+df = preprocessing.MinMaxScaler().fit_transform(df)
 
 # feature extraction and labeling
 data = df[:, 1:7]
