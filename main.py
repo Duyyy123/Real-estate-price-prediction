@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn import model_selection
+from sklearn import preprocessing
 
 np.set_printoptions(suppress = True)
 # load DataFrame
@@ -12,22 +13,11 @@ cmax = df.min()
 df.iloc[:,:] = (df.iloc[:,:] - cmin[:]) / (cmax[:] - cmin[:])
 
 # feature extraction and labeling
-data = df.drop(["No", "Y house price of unit area"], axis = 1)
-label = df[["Y house price of unit area"]]
-
+data = df[:, 1:7]
+label = df[:, 7].reshape(-1)
 
 # data splitting
-train_data, test_data, train_label, test_label = train_test_split(data, label, test_size = 0.1, random_state = 50)
-
-# data pre-processing
-test_data = test_data.to_numpy()
-train_data = train_data.to_numpy()
-
-test_label = test_label.to_numpy()
-test_label = test_label.flatten()
-
-train_label = train_label.to_numpy()
-train_label = train_label.flatten()
+train_data, test_data, train_label, test_label = model_selection.train_test_split(data, label, test_size = 0.1, random_state = 50)
 
 # show data
 
