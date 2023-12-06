@@ -10,7 +10,7 @@ df = pd.read_csv("real_estate.csv", dtype = float)
 # data normalization
 df = preprocessing.MinMaxScaler().fit_transform(df)
 
-# feature extraction and labeling
+# extraction feature and label
 data = df[:, 1:7]
 label = df[:, 7].reshape(-1)
 
