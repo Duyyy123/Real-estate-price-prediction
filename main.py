@@ -49,13 +49,8 @@ k = 0
 pre_L = float('inf')
 while k < max_loops:
     dw, db = derivative(w,b)
-<<<<<<< HEAD
     w = w - alpha * dw
     b = b - alpha * db
-=======
-    w = w - alpha * dw;
-    b = b - alpha * db;
->>>>>>> ec6f228285f4d2069307d34b1db14defdeac63a4
     
     L = compute(w,b)
     
@@ -64,7 +59,6 @@ while k < max_loops:
     
     pre_L = L
     k += 1
-<<<<<<< HEAD
 
 #y^
 M = len(test_data)
@@ -78,18 +72,3 @@ for i in range(M):
     mse += (test_label[i] - predict[i]) ** 2
 mse /= M
 print(mse) 
-=======
-    
-
-#TEST R^2
-test_pre = (test_data @ w.T) + b
-N = len(test_data)
-tu = mau = 0
-for i in range(N):
-    tu += (test_label[i] - test_pre[i]) ** 2;
-    mau += (test_label[i] - np.mean(test_label)) ** 2
-
-test_r2 = 1 - (tu/mau)
-    
-print(f'Test R^2: {test_r2}')
->>>>>>> ec6f228285f4d2069307d34b1db14defdeac63a4
