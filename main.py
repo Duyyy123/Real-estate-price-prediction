@@ -24,14 +24,14 @@ max_loops = 1000
 
 #random w, b
 w = np.random.rand(1, 6)
-b = np.random.rand(1, 1)
+b = np.random.random()
 
 #compute L
 def compute(w, b):
     N = len(train_data)
     L = 0.0
     for i in range (N):
-        L += 0.5 * ((w@train_data[i] + b - train_label[i]) ** 2)
+        L += 0.5 * ((w @ train_data[i] + b - train_label[i]) ** 2)
     return L
 
 #derivative
@@ -63,8 +63,10 @@ while k < max_loops:
 #y^
 M = len(test_data)
 predict = np.zeros_like(test_label)
+b = np.squeeze(b)
+
 for i in range(M):
-    predict[i] = w @ test_data[i] + b
+    predict[i] = np.squeeze(w @ test_data[i]) + b
 
 #MSE
 mse = 0.0
