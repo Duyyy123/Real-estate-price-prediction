@@ -8,6 +8,8 @@ np.set_printoptions(suppress = True)
 df = pd.read_csv("real_estate.csv", dtype = float)
 
 # data normalization
+min = df["Y house price of unit area"].min()
+max = df["Y house price of unit area"].max()
 df = preprocessing.MinMaxScaler().fit_transform(df)
 
 # extraction feature and label
@@ -73,4 +75,10 @@ mse = 0.0
 for i in range(M):
     mse += (test_label[i] - predict[i]) ** 2
 mse /= M
-print(mse) 
+print("He so hoc cua mo hinh: ")
+print(alpha)
+print("Gia nha du doan cua mo hinh")
+print(predict * (max - min) + min)
+print()
+print("Sai so toan phuong trung binh cua mo hinh: ")
+print(mse)
