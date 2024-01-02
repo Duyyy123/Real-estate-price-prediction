@@ -1,6 +1,6 @@
 # Real-estate-price-prediction
 
-- current week: 1
+- current week: 5
 - week 1 task: prepare data, data classification, load, show data
 - week 2: data preprocessing
 - week 3: Set up prediction using linear regression
